@@ -18,11 +18,17 @@ api.get('/messages', ( req, res ) => {
     res.send(messages);
 })
 
+api.get('/messages/:user', ( req, res ) => {
+    var user = req.params.user;
+    var result = messages.filter(message => message.owner == user)
+    res.json(result);
+})
+
 api.post('/messages', ( req, res ) => {
     messages.push(req.body);
-    res.sendStatus(200);
+    res.json(req.body);
 })
 
 app.use('/api', api);
 
-app.listen(1234)
+app.listen(63145)
